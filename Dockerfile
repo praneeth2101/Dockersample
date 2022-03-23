@@ -1,8 +1,20 @@
+# Test web-app to use with Pluralsight courses and Docker Deep Dive book
+# Linux x64
 FROM alpine
-LABEL maintainer="rambabu1683@gmail.com"
-RUN apk add --update nodejs nodejs-npm
+
+LABEL maintainer="nigelpoulton@hotmail.com"
+
+# Install Node and NPM
+RUN apk add --update nodejs npm curl
+
+# Copy app to /src
 COPY . /src
+
 WORKDIR /src
-RUN npm install
+
+# Install dependencies
+RUN  npm install
+
 EXPOSE 8080
-ENTRYPOINT ["node","./app.js"]
+
+ENTRYPOINT ["node", "./app.js"]
